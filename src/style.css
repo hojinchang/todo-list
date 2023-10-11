@@ -10,6 +10,7 @@
     --green-2: #C4D7B2;
     --green-3: #E1ECC8;
     --green-4: #F7FFE5;
+    --faded-text: rgba(0, 0, 0, 0.5);
     --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
@@ -19,9 +20,38 @@ header {
     gap: 1rem;
     background: var(--green-1);
     padding: 1.25rem 3rem;
-    box-shadow: var(--box-shadow);
 }
 
 header > img {
     width: 2.3rem;
+}
+
+#sidebar {
+    max-width: 300px;
+    background: var(--green-4);
+    padding: 50px 30px;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sidebar-button {
+    display: flex;
+    align-items: center;
+    background: white;
+    gap: 1rem;
+    font-size: 1rem;
+    color: var(--faded-text);
+    min-width: 10rem;
+    padding: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    box-shadow: var(--box-shadow);
+}
+
+.sidebar-button:hover {
+    border: 2px solid var(--green-1);
 }
