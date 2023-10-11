@@ -27,7 +27,7 @@ header > img {
 }
 
 #sidebar {
-    max-width: 300px;
+    max-width: 20rem;
     background: var(--green-4);
     padding: 50px 30px;
 }
