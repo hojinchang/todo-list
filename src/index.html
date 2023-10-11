@@ -17,26 +17,36 @@
         <main>
             <nav id="sidebar">
                 <div class="sidebar-menu">
-                    <button class="sidebar-button" type="button">
+                    <button class="sidebar-button button-hover" type="button">
                         <img src="<%= require('./images/calendar-all.svg') %>" alt="All">
                         <p>All</p>
                     </button>
-                    <button class="sidebar-button" type="button">
+                    <button class="sidebar-button button-hover" type="button">
                         <img src="<%= require('./images/calendar-today.svg') %>" alt="All">
                         <p>Today</p>
                     </button>
-                    <button class="sidebar-button" type="button">
+                    <button class="sidebar-button button-hover" type="button">
                         <img src="<%= require('./images/calendar-week.svg') %>" alt="All">
                         <p>Week</p>
                     </button>
-                    <button class="sidebar-button" type="button">
+                    <button class="sidebar-button button-hover" type="button">
                         <img src="<%= require('./images/calendar-urgent.svg') %>" alt="All">
                         <p>Urgent</p>
                     </button>
-                    <button class="sidebar-button" type="button">
+                    <button class="sidebar-button button-hover" type="button">
                         <img src="<%= require('./images/calendar-completed.svg') %>" alt="All">
                         <p>Completed</p>
                     </button>
+                </div>
+
+                <div class="sidebar-projects-header">
+                    <h4>Projects (<span class="projects-count">0</span>)</h3>
+                    <button class="add-project-button  button-hover" data-tooltip="Add New Project">
+                        +
+                    </button>
+                </div>
+                <div class="sidebar-projects">
+                    <p>temp</p>
                 </div>
             </nav>
         </main>
