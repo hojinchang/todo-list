@@ -16,6 +16,7 @@
     --border-radius: 0.3rem;
 }
 
+/* Header */
 header {
     display: flex;
     align-items: center;
@@ -28,6 +29,7 @@ header > img {
     width: 2.3rem;
 }
 
+/* Sidebar */
 #sidebar {
     max-width: 18rem;
     background: var(--green-4);
