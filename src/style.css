@@ -44,7 +44,13 @@ header > img {
     gap: 1rem;
 }
 
-.sidebar-button {
+.sidebar-menu img,
+.sidebar-projects img {
+    width: 1.5rem;
+}
+
+.sidebar-button,
+.project-button {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -52,11 +58,18 @@ header > img {
     gap: 1rem;
     font-size: 1rem;
     color: var(--faded-text);
-    min-width: 10rem;
     padding: 0.5rem;
     border: 1px solid var(--faded-border);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
+}
+
+.sidebar-button p,
+.project-button p {
+    flex: 1; /* Allow the text to shrink */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Show an ellipsis (...) for long text */ 
 }
 
 .button-hover:hover {
@@ -107,10 +120,23 @@ header > img {
     opacity: 1;
 }
 
-.sidebar-projects-header,
-.sidebar-projects {
-    border-bottom: 1px solid var(--faded-border); 
+.sidebar-projects-header {
+    border-bottom: 1px solid var(--faded-border);
+    margin-bottom: 1rem;
 }
+
+
+.sidebar-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.edit-project {
+    margin-right: 0.2rem;
+}
+
+
 
 /* New Project Modal */
 #newProjectModal {
@@ -151,6 +177,7 @@ header > img {
     top: 0;
     right: 0.7rem;
     background: none;
+    color: white;
     border: none;
     font-size: 2rem;
 }
