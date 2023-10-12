@@ -70,6 +70,11 @@ header > img {
     text-overflow: ellipsis; /* Show an ellipsis (...) for long text */ 
 }
 
+.sidebar-button.active-button {
+    background-color: var(--green-1);
+    color: white;
+}
+
 .button-hover:hover {
     border: 2px solid var(--green-1);
     color: var(--green-1);

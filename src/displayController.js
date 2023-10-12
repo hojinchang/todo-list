@@ -1,14 +1,27 @@
 import projects from './projects';
-// import createSidebarProject from "./createDom";
-
 
 const displayController = (() => {
+    const sidebarBtns = document.querySelectorAll(".sidebar-button");
+    const newProjectModal = document.getElementById("newProjectModal");
+    const newProjectForm = document.getElementById("newProjectForm");
+    const newProjectBtn = document.querySelector(".create-project-button");
+    const modalBtns = document.querySelectorAll(".modal-button");
+    const backdropModal = document.createElement("div");
+
+
+    const _addActiveClass = (e) => {
+        const sidebarBtns = document.querySelectorAll(".sidebar-button");
+        const sidebarBtn = e.target.closest(".sidebar-button");
+
+        if (!sidebarBtn.classList.contains("active-button")) {
+            sidebarBtns.forEach(button => {
+                button.classList.remove("active-button");
+            })
+            sidebarBtn.classList.add("active-button");
+        }
+    }
 
     const _activateNewProjectModal = () => {
-        const newProjectModal = document.getElementById("newProjectModal");
-        const newProjectBtn = document.querySelector(".create-project-button");
-        const modalButtons = document.querySelectorAll(".modal-button");
-        const backdropModal = document.createElement("div");
         backdropModal.className = "backdrop";
 
         // Opens the new project modal form
@@ -27,29 +40,38 @@ const displayController = (() => {
 
         newProjectBtn.addEventListener("click", _openNewProjectModal);
         
-        modalButtons.forEach(button => {
+        modalBtns.forEach(button => {
             button.addEventListener("click", _closeNewProjectModal);
         });
     }
 
     const _createProject = () => {
-        const newProjectForm = document.getElementById("newProjectForm");
-
         newProjectForm.addEventListener("submit", (e) => {
             e.preventDefault();
 
             const formData = new FormData(newProjectForm);
-            console.log(formData.get("title"))
-            projects.addProject(formData.get("title"));
+            const newProject = projects.addProject(formData.get("title"));
+
+            console.log(newProject)
+            newProject.addEventListener("click", (e) => _addActiveClass(e));
+
             newProjectForm.reset();
         })
 
     }
 
 
+    const _initDisplay = () => {
+        sidebarBtns.forEach(button => {
+            button.addEventListener("click", _addActiveClass);
+        });
 
-    _activateNewProjectModal();
-    _createProject();
+        _activateNewProjectModal();
+        _createProject();
+    }
+
+
+    _initDisplay();
 
 
 })();
