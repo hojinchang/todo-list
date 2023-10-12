@@ -3,25 +3,37 @@ import projects from './projects';
 
 
 const displayController = (() => {
+
     const _activateNewProjectModal = () => {
         const newProjectModal = document.getElementById("newProjectModal");
+        const newProjectForm = document.getElementById("newProjectForm");
         const newProjectBtn = document.querySelector(".create-project-button");
-        const closeProjectModalBtn = document.querySelector(".modal-close-button");
+        const closeBtn = document.querySelector(".modal-close-button");
+        const cancelBtn = document.querySelector(".modal-cancel-button");
+        const addBtn = document.querySelector(".modal-confirm-button");
+        const modalButtons = document.querySelectorAll(".modal-button");
         const backdropModal = document.createElement("div");
         backdropModal.className = "backdrop";
 
-        newProjectBtn.addEventListener("click", () => {
+        // Opens the new project modal form
+        const _openNewProjectModal = () => {
             newProjectModal.style.display = "block";
             backdropModal.style.display = "block";
             document.body.appendChild(backdropModal);
-        })
-        
-        
-        closeProjectModalBtn.addEventListener("click", () => {
+        }
+
+        // Closes and resets the new project modal form
+        const _closeNewProjectModal = () => {
             newProjectModal.style.display = "none";
             backdropModal.style.display = "none";
             document.body.removeChild(backdropModal);
-        })
+        }
+
+        newProjectBtn.addEventListener("click", _openNewProjectModal);
+        
+        modalButtons.forEach(button => {
+            button.addEventListener("click", _closeNewProjectModal);
+        });
     }
 
     const _createProject = () => {
@@ -33,7 +45,7 @@ const displayController = (() => {
             const formData = new FormData(newProjectForm);
             console.log(formData.get("title"))
             projects.addProject(formData.get("title"));
-            // createSidebarProject
+            newProjectForm.reset();
         })
 
     }
