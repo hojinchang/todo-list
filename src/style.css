@@ -49,8 +49,7 @@ header > img {
     width: 1.5rem;
 }
 
-.sidebar-button,
-.project-button {
+.sidebar-button {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -64,8 +63,7 @@ header > img {
     box-shadow: var(--box-shadow);
 }
 
-.sidebar-button p,
-.project-button p {
+.sidebar-button p {
     flex: 1; /* Allow the text to shrink */
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden; /* Hide overflowing text */

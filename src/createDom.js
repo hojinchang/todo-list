@@ -3,7 +3,7 @@ import DeleteIcon from "./images/delete.svg";
 
 const createSidebarProject = (projectName) => {
     const projectContainer = document.createElement("div");
-    projectContainer.classList.add("project-button");
+    projectContainer.classList.add("sidebar-button");
     projectContainer.classList.add("button-hover");
     projectContainer.dataset.projectName = projectName;
     const name = document.createElement("p");

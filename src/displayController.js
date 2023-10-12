@@ -6,11 +6,7 @@ const displayController = (() => {
 
     const _activateNewProjectModal = () => {
         const newProjectModal = document.getElementById("newProjectModal");
-        const newProjectForm = document.getElementById("newProjectForm");
         const newProjectBtn = document.querySelector(".create-project-button");
-        const closeBtn = document.querySelector(".modal-close-button");
-        const cancelBtn = document.querySelector(".modal-cancel-button");
-        const addBtn = document.querySelector(".modal-confirm-button");
         const modalButtons = document.querySelectorAll(".modal-button");
         const backdropModal = document.createElement("div");
         backdropModal.className = "backdrop";
