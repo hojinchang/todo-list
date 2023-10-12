@@ -14,57 +14,59 @@
             <h1>TO-DO</h1>
         </header>
 
-        <main>
-            <nav id="sidebar">
-                <div class="sidebar-menu">
-                    <button class="sidebar-button button-hover" type="button">
-                        <img src="<%= require('./images/calendar-all.svg') %>" alt="All">
-                        <p>All</p>
-                    </button>
-                    <button class="sidebar-button button-hover" type="button">
-                        <img src="<%= require('./images/calendar-today.svg') %>" alt="All">
-                        <p>Today</p>
-                    </button>
-                    <button class="sidebar-button button-hover" type="button">
-                        <img src="<%= require('./images/calendar-week.svg') %>" alt="All">
-                        <p>Week</p>
-                    </button>
-                    <button class="sidebar-button button-hover" type="button">
-                        <img src="<%= require('./images/calendar-urgent.svg') %>" alt="All">
-                        <p>Urgent</p>
-                    </button>
-                    <button class="sidebar-button button-hover" type="button">
-                        <img src="<%= require('./images/calendar-completed.svg') %>" alt="All">
-                        <p>Completed</p>
-                    </button>
-                </div>
-
-                <div class="sidebar-projects-header">
-                    <h4>Projects (<span class="projects-count">0</span>)</h3>
-                    <button class="create-project-button  button-hover" data-tooltip="Create New Project">+</button>
-                </div>
-                <div class="sidebar-projects">
-                    <p>temp</p>
-                </div>
-            </nav>
-
-            <div id="newProjectModal">
-                <form id="newProjectForm">
-                    <h3>New Project</h3>
-                    <button class="modal-close-button" type="button" aria-hidden="true">&times;</button>
-                    <div class="form-content">
-                        <div class="form-input">
-                            <label for="title">Title*</label>
-                            <input type="text" id="title" name="title" placeholder="Project Name" required>
-                        </div>
-    
-                        <div class="modal-buttons">
-                            <button class="modal-cancel-button" type="button">Cancel</button>
-                            <button class="modal-confirm-button" type="submit">Add</button>
-                        </div>
-                    </div>
-                </form>
+        <nav id="sidebar">
+            <div class="sidebar-menu">
+                <button class="sidebar-button button-hover" type="button">
+                    <img src="<%= require('./images/calendar-all.svg') %>" alt="All">
+                    <p>All</p>
+                </button>
+                <button class="sidebar-button button-hover" type="button">
+                    <img src="<%= require('./images/calendar-today.svg') %>" alt="All">
+                    <p>Today</p>
+                </button>
+                <button class="sidebar-button button-hover" type="button">
+                    <img src="<%= require('./images/calendar-week.svg') %>" alt="All">
+                    <p>Week</p>
+                </button>
+                <button class="sidebar-button button-hover" type="button">
+                    <img src="<%= require('./images/calendar-urgent.svg') %>" alt="All">
+                    <p>Urgent</p>
+                </button>
+                <button class="sidebar-button button-hover" type="button">
+                    <img src="<%= require('./images/calendar-completed.svg') %>" alt="All">
+                    <p>Completed</p>
+                </button>
             </div>
+
+            <div class="sidebar-projects-header">
+                <h4>Projects (<span class="projects-count">0</span>)</h3>
+                <button class="create-project-button  button-hover" data-tooltip="Create New Project">+</button>
+            </div>
+            <div class="sidebar-projects">
+                <p>temp</p>
+            </div>
+        </nav>
+
+        <div id="newProjectModal">
+            <form id="newProjectForm">
+                <h3>New Project</h3>
+                <button class="modal-close-button" type="button" aria-hidden="true">&times;</button>
+                <div class="form-content">
+                    <div class="form-input">
+                        <label for="title">Title*</label>
+                        <input type="text" id="title" name="title" placeholder="Project Name" required>
+                    </div>
+
+                    <div class="modal-buttons">
+                        <button class="modal-cancel-button" type="button">Cancel</button>
+                        <button class="modal-confirm-button" type="submit">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <main>
+            
         </main>
         
     </body>
