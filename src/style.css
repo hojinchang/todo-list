@@ -116,25 +116,25 @@ header > img {
 #newProjectModal {
     display: none;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
     background: white;
     color: black;
-    border-radius: 1rem;
+    top: 50%;
+    left: 50%;
     width: 25rem;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border-radius: 1rem;
 }
 
 .backdrop {
+    display: none;
     position: fixed;
+    background: rgba(0, 0, 0, 0.5);
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
     z-index: 0;
-    display: none;
 }
 
 #newProjectForm > h3 {
@@ -177,11 +177,13 @@ header > img {
     justify-content: space-around;
 }
 .modal-buttons > button {
+    cursor: pointer;
     font-size: 1rem;
     border: none;
     border-radius: 0.4rem;
     padding: 0.6rem 0;
     width: 8rem;
+    box-shadow: var(--box-shadow);
 }
 .modal-buttons > button:active {
     transform: translateY(2px);
