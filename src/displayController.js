@@ -10,7 +10,7 @@ const displayController = (() => {
     const projectsCount = document.querySelector(".projects-count");
     const modalBtns = document.querySelectorAll(".modal-button");
     const backdropModal = document.createElement("div");
-    const main = document.querySelector("main");
+    const mainContent = document.getElementById("main-content");
 
 
     const _addActiveClass = (e) => {
@@ -76,11 +76,13 @@ const displayController = (() => {
 
     const _createMain = (e) => {
         const sidebarBtn = e.target.closest(".sidebar-button");
-        dom.createMain(sidebarBtn.dataset.sidebarFilter);
+        const main = dom.createMain(sidebarBtn.dataset.sidebarFilter);
+        mainContent.appendChild(main);
+
     }
 
     const _resetMain = () => {
-        main.textContent = "";
+        mainContent.textContent = "";
     }
 
 

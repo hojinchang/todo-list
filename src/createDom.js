@@ -42,14 +42,11 @@ const dom = (() => {
     const createMain = (headerName) => {
         const headerContainer = document.createElement("div");
         const headerIcon = document.querySelector(`img[data-sidebar-icon="${headerName}"]`).cloneNode(true);
-        const headerText = document.createElement("h1");
+        const headerText = document.createElement("h2");
         headerText.textContent = headerName;
 
         headerContainer.appendChild(headerIcon);
         headerContainer.appendChild(headerText);
-
-        const main = document.querySelector("main");
-        main.appendChild(headerContainer);
 
         return headerContainer;
     }
