@@ -1,15 +1,12 @@
-import dom from "./createDom";
-
 const projects = (() => {
     const projects = [];
 
     const getLength = () => projects.length;
 
-    const addProject = (projectName) => {
-        const project = dom.createSidebarProject(projectName);
-        projects.push(project);
+    const getProjects = () => projects;
 
-        return project;
+    const addProject = (projectName) => {
+        projects.push(projectName);
     }
 
     return {addProject, getLength};
