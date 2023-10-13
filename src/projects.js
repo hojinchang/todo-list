@@ -5,8 +5,8 @@ const projects = (() => {
 
     const getProjects = () => projects;
 
-    const addProject = (projectName) => {
-        projects.push(projectName);
+    const addProject = (newProject) => {
+        projects.push(newProject);
     }
 
     return {addProject, getLength};

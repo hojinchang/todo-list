@@ -39,11 +39,11 @@ const dom = (() => {
     }
 
     // Create main
-    const createMain = (headerName) => {
+    const createMain = (projectName) => {
         const headerContainer = document.createElement("div");
-        const headerIcon = document.querySelector(`img[data-sidebar-icon="${headerName}"]`).cloneNode(true);
+        const headerIcon = document.querySelector(`img[data-sidebar-icon="${projectName}"]`).cloneNode(true);
         const headerText = document.createElement("h2");
-        headerText.textContent = headerName;
+        headerText.textContent = projectName;
 
         headerContainer.appendChild(headerIcon);
         headerContainer.appendChild(headerText);
@@ -51,7 +51,7 @@ const dom = (() => {
         return headerContainer;
     }
 
-    return { createSidebarProject, createMain };
+    return {createSidebarProject, createMain};
 })();
 
 export default dom;

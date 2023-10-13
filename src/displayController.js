@@ -1,5 +1,6 @@
-import dom from "./createDom";
-import projects from './projects';
+import dom from './createDom';
+import Projects from './projects';
+import Project from './project';
 
 const displayController = (() => {
     const sidebarBtns = document.querySelectorAll(".sidebar-button");
@@ -12,6 +13,14 @@ const displayController = (() => {
     const backdropModal = document.createElement("div");
     const mainContent = document.getElementById("main-content");
 
+
+    const _openProject = (e) => {
+        const project = e.target.closest(".sidebar-button");
+        const projectName = project.dataset.sidebarFilter;
+        mainContent.appendChild(dom.createMain(projectName));
+    }
+
+    const _clearProject = () => mainContent.textContent = "";
 
     const _addActiveClass = (e) => {
         const sidebarBtns = document.querySelectorAll(".sidebar-button");
@@ -50,9 +59,7 @@ const displayController = (() => {
     }
 
     const _createProject = () => {
-        const _updateNumProjects = () => {
-            projectsCount.textContent = projects.getLength();
-        }
+        const _updateNumProjects = () => projectsCount.textContent = Projects.getLength();
 
         newProjectForm.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -63,26 +70,17 @@ const displayController = (() => {
 
             project.addEventListener("click", (e) => {
                 _addActiveClass(e);
-                _resetMain(e);
-                _createMain(e);
+                _clearProject();
+                _openProject(e);
             });
 
             projectsSidebar.appendChild(project);
-
+            
             newProjectForm.reset();
+
+            Projects.addProject(Project())
             _updateNumProjects();
         })
-    }
-
-    const _createMain = (e) => {
-        const sidebarBtn = e.target.closest(".sidebar-button");
-        const main = dom.createMain(sidebarBtn.dataset.sidebarFilter);
-        mainContent.appendChild(main);
-
-    }
-
-    const _resetMain = () => {
-        mainContent.textContent = "";
     }
 
 
@@ -90,8 +88,8 @@ const displayController = (() => {
         sidebarBtns.forEach(button => {
             button.addEventListener("click", (e) => {
                 _addActiveClass(e);
-                _resetMain(e);
-                _createMain(e);
+                _clearProject();
+                _openProject(e);
             });
         });
 
