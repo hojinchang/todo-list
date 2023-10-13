@@ -13,6 +13,8 @@ const displayController = (() => {
     const backdropModal = document.createElement("div");
     const mainContent = document.getElementById("main-content");
 
+    backdropModal.className = "backdrop";
+
 
     const _openProject = (e) => {
         const project = e.target.closest(".button");
@@ -38,28 +40,21 @@ const displayController = (() => {
         }
     }
 
-    const _activateNewProjectModal = () => {
-        backdropModal.className = "backdrop";
+    const _resetForm = (form) => form.reset();
 
-        // Opens the new project modal form
-        const _openNewProjectModal = () => {
-            newProjectModal.style.display = "block";
-            backdropModal.style.display = "block";
-            document.body.appendChild(backdropModal);
-        }
+    // Opens the new project modal form
+    const _openModal = (modal) => {
+        modal.style.display = "block";
+        backdropModal.style.display = "block";
+        document.body.appendChild(backdropModal);
+    }
 
-        // Closes and resets the new project modal form
-        const _closeNewProjectModal = () => {
-            newProjectModal.style.display = "none";
-            backdropModal.style.display = "none";
-            document.body.removeChild(backdropModal);
-        }
-
-        newProjectBtn.addEventListener("click", _openNewProjectModal);
-        
-        modalBtns.forEach(button => {
-            button.addEventListener("click", _closeNewProjectModal);
-        });
+    // Closes and resets the new project modal form
+    const _closeModal = (modal, form) => {
+        modal.style.display = "none";
+        backdropModal.style.display = "none";
+        document.body.removeChild(backdropModal);
+        form.reset();
     }
 
     const _createProject = () => {
@@ -81,7 +76,7 @@ const displayController = (() => {
             Projects.addProject(Project(projectTitle));
             projectsSidebar.appendChild(project);
             
-            newProjectForm.reset();
+            _resetForm(newProjectForm);
             _updateNumProjects();
         })
     }
@@ -96,10 +91,21 @@ const displayController = (() => {
             });
         });
 
-        _activateNewProjectModal();
         _createProject();
+    
     }
 
+
+
+    newProjectBtn.addEventListener("click", () => _openModal(newProjectModal));
+
+    modalBtns.forEach(button => {
+        button.addEventListener("click", (e) => {
+            const modal = e.target.closest(".modal");
+            const form = e.target.closest("form");
+            _closeModal(modal, form);
+        });
+    });
 
     _initDisplay();
 
