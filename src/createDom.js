@@ -7,7 +7,8 @@ const dom = (() => {
     // Create a project element in the DOM
     const createSidebarProject = (projectName) => {
         const projectContainer = document.createElement("div");
-        projectContainer.classList.add("sidebar-button");
+        projectContainer.classList.add("button");
+        projectContainer.classList.add("project-button");
         projectContainer.classList.add("button-hover");
         projectContainer.dataset.sidebarFilter = projectName;
         projectContainer.dataset.projectName = projectName;

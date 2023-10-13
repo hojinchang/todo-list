@@ -3,7 +3,8 @@ import Projects from './projects';
 import Project from './project';
 
 const displayController = (() => {
-    const sidebarBtns = document.querySelectorAll(".sidebar-button");
+    const sidebarBtns = document.querySelectorAll(".button");
+    const sidebarFilterBtns = document.querySelectorAll(".filter-button");
     const projectsSidebar = document.querySelector(".sidebar-projects");
     const newProjectModal = document.getElementById("newProjectModal");
     const newProjectForm = document.getElementById("newProjectForm");
@@ -15,16 +16,15 @@ const displayController = (() => {
 
 
     const _openProject = (e) => {
-        const project = e.target.closest(".sidebar-button");
+        const project = e.target.closest(".button");
         const projectName = project.dataset.sidebarFilter;
         mainContent.appendChild(dom.createMain(projectName));
     }
 
     const _clearProject = () => mainContent.textContent = "";
 
-    const _addActiveClass = (e) => {
-        const sidebarBtns = document.querySelectorAll(".sidebar-button");
-        const sidebarBtn = e.target.closest(".sidebar-button");
+    const _highlightActiveBtn = (e) => {
+        const sidebarBtn = e.target.closest(".button");
 
         if (!sidebarBtn.classList.contains("active-button")) {
             sidebarBtns.forEach(button => {
@@ -69,7 +69,7 @@ const displayController = (() => {
             const project =  dom.createSidebarProject(formData.get("title"));
 
             project.addEventListener("click", (e) => {
-                _addActiveClass(e);
+                _highlightActiveBtn(e);
                 _clearProject();
                 _openProject(e);
             });
@@ -85,9 +85,9 @@ const displayController = (() => {
 
 
     const _initDisplay = () => {
-        sidebarBtns.forEach(button => {
+        sidebarFilterBtns.forEach(button => {
             button.addEventListener("click", (e) => {
-                _addActiveClass(e);
+                _highlightActiveBtn(e);
                 _clearProject();
                 _openProject(e);
             });

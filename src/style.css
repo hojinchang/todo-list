@@ -62,7 +62,7 @@ header > img {
     width: 1.5rem;
 }
 
-.sidebar-button {
+.button {
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -76,14 +76,14 @@ header > img {
     box-shadow: var(--box-shadow);
 }
 
-.sidebar-button p {
+.button p {
     flex: 1; /* Allow the text to shrink */
     white-space: nowrap; /* Prevent text from wrapping */
     overflow: hidden; /* Hide overflowing text */
     text-overflow: ellipsis; /* Show an ellipsis (...) for long text */ 
 }
 
-.sidebar-button.active-button {
+.button.active-button {
     background-color: var(--green-1);
     color: white;
 }
