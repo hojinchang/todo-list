@@ -17,7 +17,11 @@ const displayController = (() => {
     const _openProject = (e) => {
         const project = e.target.closest(".button");
         const projectName = project.dataset.sidebarFilter;
-        mainContent.appendChild(dom.createMain(projectName));
+
+        const { headerContainer, tasksContainer } = dom.createMain(projectName);
+
+        mainContent.appendChild(headerContainer);
+        mainContent.appendChild(tasksContainer);
     }
 
     const _clearProject = () => mainContent.textContent = "";
@@ -66,8 +70,7 @@ const displayController = (() => {
 
             const formData = new FormData(newProjectForm);
             const projectTitle = formData.get("title");
-            // Create project DOM element
-            const project =  dom.createSidebarProject(projectTitle);
+            const project =  dom.createSidebarProject(projectTitle);   // Create project DOM element
 
             project.addEventListener("click", (e) => {
                 _highlightActiveBtn(e);

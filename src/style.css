@@ -11,11 +11,12 @@
     --green-3: #E1ECC8;
     --green-4: #F7FFE5;
     --faded-text: rgba(0, 0, 0, 0.5);
-    --faded-border: rgba(0, 0, 0, 0.2);
+    --faded-border: 1px solid rgba(0, 0, 0, 0.2);
     --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     --border-radius: 0.3rem;
     --modal-form-padding: 20px;
     --sidebar-width: 300px;
+    --icon-text-gap: 1rem;
 }
 
 /* Body */
@@ -67,11 +68,11 @@ header > img {
     display: flex;
     align-items: center;
     background: white;
-    gap: 1rem;
+    gap: var(--icon-text-gap);
     font-size: 1rem;
     color: var(--faded-text);
     padding: 0.5rem;
-    border: 1px solid var(--faded-border);
+    border: var(--faded-border);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
 }
@@ -98,14 +99,14 @@ header > img {
     color: white;
 }
 
-.create-project-button {
+.create-button {
     cursor: pointer;
     display: flex; 
     justify-content: center;
     align-items: center;
     background: none;
     border-radius: 50%;
-    border: 1px solid var(--faded-border); 
+    border: var(--faded-border); 
     color: var(--faded-text);
     font-size: 2rem;
     width: 2rem;
@@ -114,7 +115,7 @@ header > img {
     position: relative;
 }
 
-.create-project-button[data-tooltip]:hover::before {
+.create-button[data-tooltip]:hover::before {
     content: attr(data-tooltip);
     position: absolute;
     background-color: rgba(0, 0, 0, 0.4);
@@ -128,7 +129,7 @@ header > img {
     opacity: 0;
 }
 
-.create-project-button[data-tooltip]:hover::before {
+.create-button[data-tooltip]:hover::before {
     opacity: 1;
 }
 
@@ -137,7 +138,7 @@ header > img {
     flex-direction: column;
     gap: 1rem;
     margin-top: 30px;
-    border-bottom: 1px solid var(--faded-border);
+    border-bottom: var(--faded-border);
 }
 
 .sidebar-projects-header {
@@ -145,7 +146,7 @@ header > img {
     justify-content: space-between;
     align-items: flex-end;
     padding: 10px 0;
-    border-bottom: 1px solid var(--faded-border);
+    border-bottom: var(--faded-border);
 }
 
 .edit-project {
@@ -240,8 +241,28 @@ header > img {
 
 /* Main Content */
 #main-content {
-    margin: 0 auto;
+    flex: 1;
     padding: 2rem;
+}
+
+.tasks-header-container {
+    display: flex;
+    justify-content: center;
+    gap: var(--icon-text-gap);
+}
+
+.tasks-container {
+    padding: 30px 100px;
+    min-width: 700px;
+}
+
+.tasks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-bottom: var(--faded-border);;
 }
 
 

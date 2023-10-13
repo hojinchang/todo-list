@@ -42,14 +42,39 @@ const dom = (() => {
     // Create main
     const createMain = (projectName) => {
         const headerContainer = document.createElement("div");
+        headerContainer.classList.add("tasks-header-container");
         const headerIcon = document.querySelector(`img[data-sidebar-icon="${projectName}"]`).cloneNode(true);
-        const headerText = document.createElement("h2");
+        const headerText = document.createElement("h1");
         headerText.textContent = projectName;
-
         headerContainer.appendChild(headerIcon);
         headerContainer.appendChild(headerText);
 
-        return headerContainer;
+        const tasksContainer = document.createElement("div");
+        tasksContainer.classList.add("tasks-container");
+        const tasksHeader = document.createElement("div");
+        tasksHeader .classList.add("tasks-header");
+        const tasksCount = document.createElement("span");
+        tasksCount.classList.add("tasks-count");
+        tasksCount.textContent = "0";
+        const tasksText = document.createElement("p");
+        tasksText.textContent = "Tasks (";
+        tasksText.appendChild(tasksCount);
+        tasksText.textContent += ")";
+
+        const createTaskBtn = document.createElement("button");
+        createTaskBtn.classList.add("create-button");
+        createTaskBtn.classList.add("create-task-button");
+        createTaskBtn.classList.add("button-hover");
+        createTaskBtn.dataset.tooltip = "Create New Task";
+        createTaskBtn.textContent = "+";
+
+        tasksHeader.appendChild(tasksText);
+        tasksHeader.appendChild(createTaskBtn);
+
+        tasksContainer.appendChild(headerContainer);
+        tasksContainer.appendChild(tasksHeader);
+
+        return {headerContainer, tasksContainer};
     }
 
     return {createSidebarProject, createMain};
