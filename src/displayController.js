@@ -3,7 +3,6 @@ import Projects from './projects';
 import Project from './project';
 
 const displayController = (() => {
-    const sidebarBtns = document.querySelectorAll(".button");
     const sidebarFilterBtns = document.querySelectorAll(".filter-button");
     const projectsSidebar = document.querySelector(".sidebar-projects");
     const newProjectModal = document.getElementById("newProjectModal");
@@ -24,13 +23,14 @@ const displayController = (() => {
     const _clearProject = () => mainContent.textContent = "";
 
     const _highlightActiveBtn = (e) => {
-        const sidebarBtn = e.target.closest(".button");
+        const sidebarBtns = document.querySelectorAll(".button");
+        const button = e.target.closest(".button");
 
-        if (!sidebarBtn.classList.contains("active-button")) {
-            sidebarBtns.forEach(button => {
-                button.classList.remove("active-button");
+        if (!button.classList.contains("active-button")) {
+            sidebarBtns.forEach(btn => {
+                btn.classList.remove("active-button");
             })
-            sidebarBtn.classList.add("active-button");
+            button.classList.add("active-button");
         }
     }
 
