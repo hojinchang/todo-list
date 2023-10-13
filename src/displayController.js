@@ -5,6 +5,7 @@ const displayController = (() => {
     const newProjectModal = document.getElementById("newProjectModal");
     const newProjectForm = document.getElementById("newProjectForm");
     const newProjectBtn = document.querySelector(".create-project-button");
+    const projectsCount = document.querySelector(".projects-count");
     const modalBtns = document.querySelectorAll(".modal-button");
     const backdropModal = document.createElement("div");
 
@@ -46,6 +47,10 @@ const displayController = (() => {
     }
 
     const _createProject = () => {
+        const _updateNumProjects = () => {
+            projectsCount.textContent = projects.getLength();
+        }
+
         newProjectForm.addEventListener("submit", (e) => {
             e.preventDefault();
 
@@ -56,8 +61,8 @@ const displayController = (() => {
             newProject.addEventListener("click", (e) => _addActiveClass(e));
 
             newProjectForm.reset();
+            _updateNumProjects();
         })
-
     }
 
 

@@ -9,7 +9,6 @@ const createSidebarProject = (projectName) => {
     const name = document.createElement("p");
     name.textContent = projectName;
 
-
     const projectModification = document.createElement("div");
     projectModification.classList.add("projectModification");
     const editIcon = new Image();
