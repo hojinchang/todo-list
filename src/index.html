@@ -16,33 +16,33 @@
 
         <nav id="sidebar">
             <div class="sidebar-menu">
-                <div class="sidebar-button button-hover active-button">
-                    <img src="<%= require('./images/calendar-all.svg') %>" alt="All">
+                <div class="sidebar-button button-hover active-button" data-sidebar-filter="All">
+                    <img src="<%= require('./images/calendar-all.svg') %>" alt="All" data-sidebar-icon="All">
                     <p>All</p>
                 </div>
-                <div class="sidebar-button button-hover">
-                    <img src="<%= require('./images/calendar-today.svg') %>" alt="All">
+                <div class="sidebar-button button-hover" data-sidebar-filter="Today">
+                    <img src="<%= require('./images/calendar-today.svg') %>" alt="All" data-sidebar-icon="Today">
                     <p>Today</p>
                 </div>
-                <div class="sidebar-button button-hover">
-                    <img src="<%= require('./images/calendar-week.svg') %>" alt="All">
+                <div class="sidebar-button button-hover" data-sidebar-filter="Week">
+                    <img src="<%= require('./images/calendar-week.svg') %>" alt="All" data-sidebar-icon="Week">
                     <p>Week</p>
                 </div>
-                <div class="sidebar-button button-hover">
-                    <img src="<%= require('./images/calendar-urgent.svg') %>" alt="All">
+                <div class="sidebar-button button-hover" data-sidebar-filter="Urgent">
+                    <img src="<%= require('./images/calendar-urgent.svg') %>" alt="All" data-sidebar-icon="Urgent">
                     <p>Urgent</p>
                 </div>
-                <div class="sidebar-button button-hover">
-                    <img src="<%= require('./images/calendar-completed.svg') %>" alt="All">
+                <div class="sidebar-button button-hover" data-sidebar-filter="Completed">
+                    <img src="<%= require('./images/calendar-completed.svg') %>" alt="All" data-sidebar-icon="Completed">
                     <p>Completed</p>
                 </div>
             </div>
 
-            <div class="sidebar-projects-header">
-                <h4>Projects (<span class="projects-count">0</span>)</h3>
-                <button class="create-project-button  button-hover" data-tooltip="Create New Project">+</button>
-            </div>
             <div class="sidebar-projects">
+                <div class="sidebar-projects-header">
+                    <h4>Projects (<span class="projects-count">0</span>)</h3>
+                    <button class="create-project-button  button-hover" data-tooltip="Create New Project">+</button>
+                </div>
                 <!-- Project Elements are dynamically added through JavaScript -->
             </div>
         </nav>
@@ -66,7 +66,7 @@
         </div>
 
         <main>
-            
+            <!-- Main content will contain the tasks for each sidebar option             -->
         </main>
         
     </body>

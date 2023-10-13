@@ -1,3 +1,4 @@
+import dom from "./createDom";
 import projects from './projects';
 
 const displayController = (() => {
@@ -8,6 +9,7 @@ const displayController = (() => {
     const projectsCount = document.querySelector(".projects-count");
     const modalBtns = document.querySelectorAll(".modal-button");
     const backdropModal = document.createElement("div");
+    const main = document.querySelector("main");
 
 
     const _addActiveClass = (e) => {
@@ -57,7 +59,6 @@ const displayController = (() => {
             const formData = new FormData(newProjectForm);
             const newProject = projects.addProject(formData.get("title"));
 
-            console.log(newProject)
             newProject.addEventListener("click", (e) => _addActiveClass(e));
 
             newProjectForm.reset();
@@ -65,10 +66,23 @@ const displayController = (() => {
         })
     }
 
+    const _createMain = (e) => {
+        const sidebarBtn = e.target.closest(".sidebar-button");
+        dom.createMain(sidebarBtn.dataset.sidebarFilter);
+    }
+
+    const _resetMain = () => {
+        main.textContent = "";
+    }
+
 
     const _initDisplay = () => {
         sidebarBtns.forEach(button => {
-            button.addEventListener("click", _addActiveClass);
+            button.addEventListener("click", (e) => {
+                _addActiveClass(e);
+                _resetMain(e);
+                _createMain(e);
+            });
         });
 
         _activateNewProjectModal();

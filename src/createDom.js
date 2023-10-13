@@ -3,10 +3,12 @@ import DeleteIcon from "./images/delete.svg";
 
 
 const dom = (() => {
+    // Create a project element in the DOM
     const createSidebarProject = (projectName) => {
         const projectContainer = document.createElement("div");
         projectContainer.classList.add("sidebar-button");
         projectContainer.classList.add("button-hover");
+        projectContainer.dataset.sidebarFilter = projectName;
         projectContainer.dataset.projectName = projectName;
         const name = document.createElement("p");
         name.textContent = projectName;
@@ -32,7 +34,23 @@ const dom = (() => {
         return projectContainer;
     }
 
-    return { createSidebarProject };
+    // Create main
+    const createMain = (headerName) => {
+        const headerContainer = document.createElement("div");
+        const headerIcon = document.querySelector(`img[data-sidebar-icon="${headerName}"]`).cloneNode(true);
+        const headerText = document.createElement("h1");
+        headerText.textContent = headerName;
+
+        headerContainer.appendChild(headerIcon);
+        headerContainer.appendChild(headerText);
+
+        const main = document.querySelector("main");
+        main.appendChild(headerContainer);
+
+        return headerContainer;
+    }
+
+    return { createSidebarProject, createMain };
 })();
 
 export default dom;

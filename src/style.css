@@ -15,6 +15,7 @@
     --box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     --border-radius: 0.3rem;
     --modal-form-padding: 20px;
+    --sidebar-width: 300px;
 }
 
 /* Header */
@@ -33,7 +34,10 @@ header > img {
 
 /* Sidebar */
 #sidebar {
-    max-width: 18rem;
+    position: fixed;
+    overflow: auto;
+    height: 100%;
+    width: var(--sidebar-width);
     background: var(--green-4);
     padding: 50px 30px;
 }
@@ -80,15 +84,6 @@ header > img {
     color: var(--green-1);
 }
 
-.sidebar-projects-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-top: 75px;
-    padding: 10px 0;
-
-}
-
 .create-project-button {
     cursor: pointer;
     display: flex; 
@@ -123,23 +118,24 @@ header > img {
     opacity: 1;
 }
 
-.sidebar-projects-header {
-    border-bottom: 1px solid var(--faded-border);
-    margin-bottom: 1rem;
-}
-
-
 .sidebar-projects {
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    margin: 75px 0;
+}
+
+.sidebar-projects-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--faded-border);
 }
 
 .edit-project {
     margin-right: 0.2rem;
 }
-
-
 
 /* New Project Modal */
 #newProjectModal {
@@ -224,4 +220,12 @@ header > img {
 }
 .modal-cancel-button {
     color: var(--faded-text);
+}
+
+
+/* Main */
+main {
+    display: flex;
+    justify-content: center;
+    margin-left: var(--sidebar-width);
 }
