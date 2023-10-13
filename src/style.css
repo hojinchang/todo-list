@@ -18,6 +18,17 @@
     --sidebar-width: 300px;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    height: 100%;
+}
+
 /* Header */
 header {
     display: flex;
@@ -34,9 +45,6 @@ header > img {
 
 /* Sidebar */
 #sidebar {
-    position: fixed;
-    overflow: auto;
-    height: 100%;
     width: var(--sidebar-width);
     background: var(--green-4);
     padding: 50px 30px;
@@ -122,7 +130,8 @@ header > img {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin: 75px 0;
+    margin-top: 30px;
+    border-bottom: 1px solid var(--faded-border);
 }
 
 .sidebar-projects-header {
@@ -227,5 +236,25 @@ header > img {
 main {
     display: flex;
     justify-content: center;
-    margin-left: var(--sidebar-width);
+}
+
+/* Footer */
+#footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--green-1);
+    height: 40px;
+    margin-top: auto;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
 }

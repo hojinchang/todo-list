@@ -3,6 +3,7 @@ import projects from './projects';
 
 const displayController = (() => {
     const sidebarBtns = document.querySelectorAll(".sidebar-button");
+    const projectsSidebar = document.querySelector(".sidebar-projects");
     const newProjectModal = document.getElementById("newProjectModal");
     const newProjectForm = document.getElementById("newProjectForm");
     const newProjectBtn = document.querySelector(".create-project-button");
@@ -57,9 +58,16 @@ const displayController = (() => {
             e.preventDefault();
 
             const formData = new FormData(newProjectForm);
-            const newProject = projects.addProject(formData.get("title"));
+            // Create project DOM element
+            const project =  dom.createSidebarProject(formData.get("title"));
 
-            newProject.addEventListener("click", (e) => _addActiveClass(e));
+            project.addEventListener("click", (e) => {
+                _addActiveClass(e);
+                _resetMain(e);
+                _createMain(e);
+            });
+
+            projectsSidebar.appendChild(project);
 
             newProjectForm.reset();
             _updateNumProjects();

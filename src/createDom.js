@@ -1,5 +1,6 @@
 import EditIcon from "./images/edit.svg";
 import DeleteIcon from "./images/delete.svg";
+import ProjectIcon from "./images/project.svg";
 
 
 const dom = (() => {
@@ -10,6 +11,11 @@ const dom = (() => {
         projectContainer.classList.add("button-hover");
         projectContainer.dataset.sidebarFilter = projectName;
         projectContainer.dataset.projectName = projectName;
+
+        const projectIcon = new Image();
+        projectIcon.src = ProjectIcon;
+        projectIcon.dataset.sidebarIcon = projectName;
+
         const name = document.createElement("p");
         name.textContent = projectName;
     
@@ -24,12 +30,10 @@ const dom = (() => {
     
         projectModification.appendChild(editIcon);
         projectModification.appendChild(deleteIcon);
-    
+        
+        projectContainer.appendChild(projectIcon);
         projectContainer.appendChild(name);
         projectContainer.appendChild(projectModification);
-    
-        const projectsSidebar = document.querySelector(".sidebar-projects");
-        projectsSidebar.appendChild(projectContainer);
     
         return projectContainer;
     }
