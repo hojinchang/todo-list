@@ -93,6 +93,11 @@ header > img {
     color: var(--green-1);
 }
 
+.button.active-button:hover {
+    border: 2px solid white;
+    color: white;
+}
+
 .create-project-button {
     cursor: pointer;
     display: flex; 
