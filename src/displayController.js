@@ -65,8 +65,9 @@ const displayController = (() => {
             e.preventDefault();
 
             const formData = new FormData(newProjectForm);
+            const projectTitle = formData.get("title");
             // Create project DOM element
-            const project =  dom.createSidebarProject(formData.get("title"));
+            const project =  dom.createSidebarProject(projectTitle);
 
             project.addEventListener("click", (e) => {
                 _highlightActiveBtn(e);
@@ -74,11 +75,10 @@ const displayController = (() => {
                 _openProject(e);
             });
 
+            Projects.addProject(Project(projectTitle));
             projectsSidebar.appendChild(project);
             
             newProjectForm.reset();
-
-            Projects.addProject(Project())
             _updateNumProjects();
         })
     }
