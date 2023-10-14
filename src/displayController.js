@@ -59,15 +59,12 @@ const displayController = (() => {
         document.body.removeChild(backdropModal);
         form.reset();
     }
-    const _deleteProject = (e, projectTitle) => {
-        const deleteProject = document.querySelector(`[data-project-name = "${projectTitle}"].delete-project`);
-        deleteProject.addEventListener("click", (e) => {
-            e.stopPropagation();  // Prevents clicking the delete buttons from trying to propagate and open the project content
-            e.target.parentNode.parentNode.remove();
-            Projects.deleteProject();
-            _clearProject();
-            _updateNumProjects();
-        });
+    const _deleteProject = (e) => {
+        e.stopPropagation();  // Prevents clicking the delete buttons from trying to propagate and open the project content
+        e.target.parentNode.parentNode.remove();
+        Projects.deleteProject();
+        _clearProject();
+        _updateNumProjects();
     }
     const _createProject = (e, newProjectForm) => {
         e.preventDefault();
@@ -75,7 +72,6 @@ const displayController = (() => {
         const formData = new FormData(newProjectForm);
         const projectTitle = formData.get("title");
 
-        console.log(projectTitle, Projects.projectExists(projectTitle))
         if (!Projects.projectExists(projectTitle)) {
             const project =  dom.createSidebarProject(projectTitle);   // Create project DOM element
 
@@ -88,8 +84,12 @@ const displayController = (() => {
             Projects.addProject(Project(projectTitle));
             projectsSidebar.appendChild(project);
 
-            const deleteProject = document.querySelector(`[data-project-name = "${projectTitle}"].delete-project`);
-            deleteProject.addEventListener("click", _deleteProject(e, projectTitle));
+            const editProject = document.querySelector(`[data-project-name = "${projectTitle}"].edit-project`);
+            
+
+            const deleteProjectBtn = document.querySelector(`[data-project-name = "${projectTitle}"].delete-project`);
+            deleteProjectBtn.addEventListener("click", _deleteProject);
+        
         } else {
             alert("Project Already Exists");
         }
