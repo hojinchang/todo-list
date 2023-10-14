@@ -5,12 +5,15 @@ import Project from './project';
 const displayController = (() => {
     const sidebarFilterBtns = document.querySelectorAll(".filter-button");
     const projectsSidebar = document.querySelector(".sidebar-projects");
-    const newProjectModal = document.getElementById("newProjectModal");
-    const newProjectForm = document.getElementById("newProjectForm");
+
+    const projectModal = document.getElementById("projectModal");
+    const projectForm = document.getElementById("projectForm");
     const newProjectBtn = document.querySelector(".create-project-button");
     const projectsCount = document.querySelector(".projects-count");
-    const modalBtns = document.querySelectorAll(".modal-button");
+    
     const mainContent = document.getElementById("main-content");
+
+    const modalBtns = document.querySelectorAll(".modal-button");
     const newTaskModal = document.getElementById("newTaskModal");
 
     const backdropModal = document.createElement("div");
@@ -39,7 +42,7 @@ const displayController = (() => {
         }
 
         const project = e.target.closest(".button");
-        const projectName = project.dataset.sidebarFilter;
+        const projectName = project.dataset.projectName;
 
         const { headerContainer, tasksContainer } = dom.createMain(projectName);
 
@@ -115,14 +118,19 @@ const displayController = (() => {
     });
 
 
-    newProjectBtn.addEventListener("click", () => _openModal(newProjectModal));
-    newProjectForm.addEventListener("submit", (e) => {
-        _createProject(e, newProjectForm);
-        _closeModal(e.target.parentNode, newProjectForm);
+    newProjectBtn.addEventListener("click", () =>  {
+        dom.addProjectModal();
+        _openModal(projectModal);
+
+    });
+    projectForm.addEventListener("submit", (e) => {
+        _createProject(e, projectForm);
+        _closeModal(e.target.parentNode, projectForm);
         _updateNumProjects();
     });
 
     _initDisplay();
+
 
 
 })();

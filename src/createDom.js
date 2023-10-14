@@ -4,13 +4,31 @@ import ProjectIcon from "./images/project.svg";
 
 
 const dom = (() => {
+    const addProjectModal = () => {
+        const modalTitle = document.getElementById("projectModalTitle");
+        const titleInput = document.getElementById("projectInput");
+        const submitButton = document.getElementById("projectConfirm");
+
+        modalTitle.textContent = "Add Project";
+        titleInput.placeholder = "Project Name";
+        submitButton.textContent = "Add";
+    }
+    const editProjectModal = (projectTitle) => {
+        const modalTitle = document.getElementById("projectModalTitle");
+        const titleInput = document.getElementById("projectInput");
+        const submitButton = document.getElementById("projectConfirm");
+
+        modalTitle.textContent = "Edit Project";
+        titleInput.value = projectTitle;
+        submitButton.textContent = "Edit";
+    }
+
     // Create a project element in the DOM
     const createSidebarProject = (projectName) => {
         const projectContainer = document.createElement("div");
         projectContainer.classList.add("button");
         projectContainer.classList.add("project-button");
         projectContainer.classList.add("button-hover");
-        projectContainer.dataset.sidebarFilter = projectName;
         projectContainer.dataset.projectName = projectName;
 
         const projectIcon = new Image();
@@ -25,6 +43,7 @@ const dom = (() => {
         const editIcon = new Image();
         editIcon.src = EditIcon;
         editIcon.classList.add("edit-project");
+        editIcon.dataset.projectName = projectName
         const deleteIcon = new Image();
         deleteIcon.src = DeleteIcon;
         deleteIcon.classList.add("delete-project");
@@ -78,7 +97,7 @@ const dom = (() => {
         return {headerContainer, tasksContainer};
     }
 
-    return {createSidebarProject, createMain};
+    return {addProjectModal, editProjectModal, createSidebarProject, createMain};
 })();
 
 export default dom;
