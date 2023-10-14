@@ -69,24 +69,30 @@ const displayController = (() => {
             _updateNumProjects();
         });
     }
-    const _createProject = (e) => {
+    const _createProject = (e, newProjectForm) => {
         e.preventDefault();
 
         const formData = new FormData(newProjectForm);
         const projectTitle = formData.get("title");
-        const project =  dom.createSidebarProject(projectTitle);   // Create project DOM element
 
-        project.addEventListener("click", (e) => {
-            _clearProject();
-            _highlightActiveBtn(e);
-            _openProject(e);
-        });
+        console.log(projectTitle, Projects.projectExists(projectTitle))
+        if (!Projects.projectExists(projectTitle)) {
+            const project =  dom.createSidebarProject(projectTitle);   // Create project DOM element
 
-        Projects.addProject(Project(projectTitle));
-        projectsSidebar.appendChild(project);
+            project.addEventListener("click", (e) => {
+                _clearProject();
+                _highlightActiveBtn(e);
+                _openProject(e);
+            });
 
-        const deleteProject = document.querySelector(`[data-project-name = "${projectTitle}"].delete-project`);
-        deleteProject.addEventListener("click", _deleteProject(e, projectTitle));
+            Projects.addProject(Project(projectTitle));
+            projectsSidebar.appendChild(project);
+
+            const deleteProject = document.querySelector(`[data-project-name = "${projectTitle}"].delete-project`);
+            deleteProject.addEventListener("click", _deleteProject(e, projectTitle));
+        } else {
+            alert("Project Already Exists");
+        }
     }
 
     const _initDisplay = () => {
@@ -111,7 +117,7 @@ const displayController = (() => {
 
     newProjectBtn.addEventListener("click", () => _openModal(newProjectModal));
     newProjectForm.addEventListener("submit", (e) => {
-        _createProject(e);
+        _createProject(e, newProjectForm);
         _closeModal(e.target.parentNode, newProjectForm);
         _updateNumProjects();
     });

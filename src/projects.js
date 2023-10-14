@@ -14,7 +14,9 @@ const projects = (() => {
         projects.splice(idx, 1);
     }
 
-    return {addProject, getLength, deleteProject};
+    const projectExists = (projectName) => !!projects.find(project => project.getName() === projectName);  // !! converts output of array.find into boolean
+    
+    return {addProject, getLength, deleteProject, projectExists};
 })();
 
 export default projects;
