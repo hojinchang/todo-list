@@ -153,18 +153,21 @@ header > img {
     margin-right: 0.2rem;
 }
 
-/* New Project Modal */
-#newProjectModal {
+.modal {
     display: none;
     position: absolute;
     background: white;
     color: black;
     top: 50%;
     left: 50%;
-    width: 25rem;
     transform: translate(-50%, -50%);
     z-index: 1;
     border-radius: 1rem;
+}
+
+/* New Project Modal */
+#newProjectModal {
+    width: 25rem;
 }
 
 .backdrop {
@@ -186,7 +189,7 @@ header > img {
     border-top-right-radius: 1rem;
 } 
 
-#newProjectForm .modal-close-button {
+.modal-close-button {
     cursor: pointer;
     position: absolute;
     top: 0;
@@ -265,6 +268,19 @@ header > img {
     border-bottom: var(--faded-border);;
 }
 
+/* New Task Modal */
+#newProjectModal {
+    display: none;
+    position: absolute;
+    background: white;
+    color: black;
+    top: 50%;
+    left: 50%;
+    width: 25rem;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border-radius: 1rem;
+}
 
 /* Footer */
 #footer {

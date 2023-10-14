@@ -10,9 +10,9 @@ const displayController = (() => {
     const newProjectBtn = document.querySelector(".create-project-button");
     const projectsCount = document.querySelector(".projects-count");
     const modalBtns = document.querySelectorAll(".modal-button");
-    const backdropModal = document.createElement("div");
     const mainContent = document.getElementById("main-content");
 
+    const backdropModal = document.createElement("div");
     backdropModal.className = "backdrop";
 
 
@@ -40,8 +40,6 @@ const displayController = (() => {
         }
     }
 
-    const _resetForm = (form) => form.reset();
-
     // Opens the new project modal form
     const _openModal = (modal) => {
         modal.style.display = "block";
@@ -51,36 +49,15 @@ const displayController = (() => {
 
     // Closes and resets the new project modal form
     const _closeModal = (modal, form) => {
+        console.log(modal)
+
         modal.style.display = "none";
         backdropModal.style.display = "none";
         document.body.removeChild(backdropModal);
         form.reset();
     }
 
-    const _createProject = () => {
-        const _updateNumProjects = () => projectsCount.textContent = Projects.getLength();
-
-        newProjectForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            const formData = new FormData(newProjectForm);
-            const projectTitle = formData.get("title");
-            const project =  dom.createSidebarProject(projectTitle);   // Create project DOM element
-
-            project.addEventListener("click", (e) => {
-                _highlightActiveBtn(e);
-                _clearProject();
-                _openProject(e);
-            });
-
-            Projects.addProject(Project(projectTitle));
-            projectsSidebar.appendChild(project);
-            
-            _resetForm(newProjectForm);
-            _updateNumProjects();
-        })
-    }
-
+    const _updateNumProjects = () => projectsCount.textContent = Projects.getLength();
 
     const _initDisplay = () => {
         sidebarFilterBtns.forEach(button => {
@@ -89,15 +66,32 @@ const displayController = (() => {
                 _clearProject();
                 _openProject(e);
             });
-        });
-
-        _createProject();
-    
+        });    
     }
 
 
-
     newProjectBtn.addEventListener("click", () => _openModal(newProjectModal));
+    newProjectForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(newProjectForm);
+        const projectTitle = formData.get("title");
+        const project =  dom.createSidebarProject(projectTitle);   // Create project DOM element
+
+        project.addEventListener("click", (e) => {
+            _highlightActiveBtn(e);
+            _clearProject();
+            _openProject(e);
+        });
+
+        Projects.addProject(Project(projectTitle));
+        projectsSidebar.appendChild(project);
+        
+        _closeModal(e.target.parentNode, newProjectForm);
+        _updateNumProjects();
+    });
+
+    
 
     modalBtns.forEach(button => {
         button.addEventListener("click", (e) => {
