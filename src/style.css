@@ -153,6 +153,12 @@ header > img {
     margin-right: 0.2rem;
 }
 
+.edit-project:hover,
+.delete-project:hover {
+    transform: scale(1.25);
+}
+
+
 /* Main Content */
 #main-content {
     flex: 1;
@@ -272,7 +278,7 @@ form > h3 {
     justify-content: center;
     align-items: center;
     background: var(--green-1);
-    height: 40px;
+    height: 32px;
     margin-top: auto;
     color: white;
 }

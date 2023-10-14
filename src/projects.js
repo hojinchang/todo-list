@@ -9,7 +9,12 @@ const projects = (() => {
         projects.push(newProject);
     }
 
-    return {addProject, getLength};
+    const deleteProject = (projectName) => {
+        const idx = projects.findIndex(project => project.getName() === projectName);
+        projects.splice(idx, 1);
+    }
+
+    return {addProject, getLength, deleteProject};
 })();
 
 export default projects;

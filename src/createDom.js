@@ -28,6 +28,7 @@ const dom = (() => {
         const deleteIcon = new Image();
         deleteIcon.src = DeleteIcon;
         deleteIcon.classList.add("delete-project");
+        deleteIcon.dataset.projectName = projectName
     
         projectModification.appendChild(editIcon);
         projectModification.appendChild(deleteIcon);
