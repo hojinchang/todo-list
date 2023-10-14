@@ -11,12 +11,21 @@ const displayController = (() => {
     const projectsCount = document.querySelector(".projects-count");
     const modalBtns = document.querySelectorAll(".modal-button");
     const mainContent = document.getElementById("main-content");
+    const newTaskModal = document.getElementById("newTaskModal");
 
     const backdropModal = document.createElement("div");
     backdropModal.className = "backdrop";
 
 
     const _openProject = (e) => {
+        const _setNewTaskButton = () => {
+            const newTaskBtn = document.querySelector(".create-task-button");
+            newTaskBtn.addEventListener("click", (e) => {
+                _openModal(newTaskModal);
+            })
+        }
+
+
         const project = e.target.closest(".button");
         const projectName = project.dataset.sidebarFilter;
 
@@ -24,6 +33,9 @@ const displayController = (() => {
 
         mainContent.appendChild(headerContainer);
         mainContent.appendChild(tasksContainer);
+
+        _setNewTaskButton();
+        
     }
 
     const _clearProject = () => mainContent.textContent = "";
@@ -49,8 +61,6 @@ const displayController = (() => {
 
     // Closes and resets the new project modal form
     const _closeModal = (modal, form) => {
-        console.log(modal)
-
         modal.style.display = "none";
         backdropModal.style.display = "none";
         document.body.removeChild(backdropModal);
@@ -68,6 +78,15 @@ const displayController = (() => {
             });
         });    
     }
+
+
+    modalBtns.forEach(button => {
+        button.addEventListener("click", (e) => {
+            const modal = e.target.closest(".modal");
+            const form = e.target.closest("form");
+            _closeModal(modal, form);
+        });
+    });
 
 
     newProjectBtn.addEventListener("click", () => _openModal(newProjectModal));
@@ -91,15 +110,10 @@ const displayController = (() => {
         _updateNumProjects();
     });
 
-    
 
-    modalBtns.forEach(button => {
-        button.addEventListener("click", (e) => {
-            const modal = e.target.closest(".modal");
-            const form = e.target.closest("form");
-            _closeModal(modal, form);
-        });
-    });
+    projectsSidebar.addEventListener("click", (e) => {
+
+    })
 
     _initDisplay();
 
