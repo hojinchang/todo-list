@@ -4,27 +4,6 @@ import ProjectIcon from "./images/project.svg";
 
 
 const dom = (() => {
-    // Convert the project modal HTML element to Add Project mode
-    const addProjectModal = () => {
-        const modalTitle = document.getElementById("projectModalTitle");
-        const titleInput = document.getElementById("projectInput");
-        const submitButton = document.getElementById("projectConfirm");
-
-        modalTitle.textContent = "Add Project";
-        titleInput.placeholder = "Project Name";
-        submitButton.textContent = "Add";
-    }
-    // Convert the project modal HTML element to Edit Project mode
-    const editProjectModal = (projectTitle) => {
-        const modalTitle = document.getElementById("projectModalTitle");
-        const titleInput = document.getElementById("projectInput");
-        const submitButton = document.getElementById("projectConfirm");
-
-        modalTitle.textContent = "Edit Project";
-        titleInput.value = projectTitle;
-        submitButton.textContent = "Edit";
-    }
-
     // Create a project element in the DOM
     const createSidebarProject = (projectName) => {
         const projectContainer = document.createElement("div");
@@ -100,7 +79,7 @@ const dom = (() => {
         return {headerContainer, tasksContainer};
     }
 
-    return {addProjectModal, editProjectModal, createSidebarProject, createMain};
+    return {createSidebarProject, createMain};
 })();
 
 export default dom;

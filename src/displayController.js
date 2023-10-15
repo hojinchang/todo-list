@@ -6,9 +6,12 @@ const displayController = (() => {
     const sidebarFilterBtns = document.querySelectorAll(".filter-button");
     const projectsSidebar = document.querySelector(".sidebar-projects");
 
-    const projectModal = document.getElementById("projectModal");
-    const projectForm = document.getElementById("projectForm");
     const newProjectBtn = document.querySelector(".create-project-button");
+    const newProjectModal = document.getElementById("newProjectModal");
+    const newProjectForm = document.getElementById("newProjectForm");
+    const editProjectModal = document.getElementById("editProjectModal");
+    const editProjectForm = document.getElementById("editProjectForm");
+
     const projectsCount = document.querySelector(".projects-count");
     let projectConfirmBtn = document.getElementById("projectConfirm");
     
@@ -65,7 +68,7 @@ const displayController = (() => {
     }
     const _editProjectModal = (e, projectTitle) => {
         e.stopPropagation();  // Prevents clicking the delete buttons from trying to propagate and open the project content
-        dom.editProjectModal(projectTitle);  // Convert the project modal HTML element to Edit Project mode
+        dom.editProjectModal();  // Convert the project modal HTML element to Edit Project mode
         _openModal(projectModal);
     }
     const _deleteProject = (e) => {
@@ -101,7 +104,6 @@ const displayController = (() => {
             const editProjectBtn = document.querySelector(`[data-project-name = "${projectTitle}"].edit-project`);
             editProjectBtn.addEventListener("click", (e) => _editProjectModal(e, projectTitle));
 
-
             const deleteProjectBtn = document.querySelector(`[data-project-name = "${projectTitle}"].delete-project`);
             deleteProjectBtn.addEventListener("click", _deleteProject);
         
@@ -131,15 +133,11 @@ const displayController = (() => {
 
 
     newProjectBtn.addEventListener("click", () =>  {
-        dom.addProjectModal();   // Convert the project modal HTML element to Add Project mode
-        _openModal(projectModal);
+        _openModal(newProjectModal);
     });
-    projectForm.addEventListener("submit", (e) => {
-        if (projectConfirmBtn.textContent === "Add") {
-            _createProject(e, projectForm);
-        }
-
-        _closeModal(e.target.parentNode, projectForm);
+    newProjectForm.addEventListener("submit", (e) => {
+        _createProject(e, newProjectForm);
+        _closeModal(e.target.parentNode, newProjectForm);
         _updateNumProjects();
         
     } )
