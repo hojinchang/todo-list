@@ -171,11 +171,6 @@ header > img {
     gap: var(--icon-text-gap);
 }
 
-.tasks-container {
-    padding: 30px 100px;
-    min-width: 700px;
-}
-
 .tasks-header {
     display: flex;
     justify-content: space-between;
