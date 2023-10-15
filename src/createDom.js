@@ -4,6 +4,7 @@ import ProjectIcon from "./images/project.svg";
 
 
 const dom = (() => {
+    // Convert the project modal HTML element to Add Project mode
     const addProjectModal = () => {
         const modalTitle = document.getElementById("projectModalTitle");
         const titleInput = document.getElementById("projectInput");
@@ -13,6 +14,7 @@ const dom = (() => {
         titleInput.placeholder = "Project Name";
         submitButton.textContent = "Add";
     }
+    // Convert the project modal HTML element to Edit Project mode
     const editProjectModal = (projectTitle) => {
         const modalTitle = document.getElementById("projectModalTitle");
         const titleInput = document.getElementById("projectInput");
@@ -29,6 +31,7 @@ const dom = (() => {
         projectContainer.classList.add("button");
         projectContainer.classList.add("project-button");
         projectContainer.classList.add("button-hover");
+        projectContainer.dataset.sidebarFilter = projectName;
         projectContainer.dataset.projectName = projectName;
 
         const projectIcon = new Image();
