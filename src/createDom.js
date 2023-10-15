@@ -15,7 +15,7 @@ const dom = (() => {
 
         const projectIcon = new Image();
         projectIcon.src = ProjectIcon;
-        projectIcon.dataset.sidebarIcon = projectName;
+        projectIcon.dataset.projectName = projectName;
 
         const name = document.createElement("p");
         name.textContent = projectName;
@@ -45,7 +45,7 @@ const dom = (() => {
     const createMain = (projectName) => {
         const headerContainer = document.createElement("div");
         headerContainer.classList.add("tasks-header-container");
-        const headerIcon = document.querySelector(`img[data-sidebar-icon="${projectName}"]`).cloneNode(true);
+        const headerIcon = document.querySelector(`img[data-project-name="${projectName}"]`).cloneNode(true);
         const headerText = document.createElement("h1");
         headerText.textContent = projectName;
         headerContainer.appendChild(headerIcon);

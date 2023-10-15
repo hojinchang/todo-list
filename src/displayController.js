@@ -52,6 +52,9 @@ const displayController = (() => {
 
         _setNewTaskButton();  
     }
+    const _updateProject = (project) => {
+
+    }
     const _openModal = (modal) => {
         modal.style.display = "block";
         modalBackdrop.style.display = "block";
@@ -70,17 +73,18 @@ const displayController = (() => {
         editProjectForm.addEventListener("submit", (e) => {
             e.preventDefault();
             const formData = new FormData(editProjectForm);
-            const newProjectTitle = formData.get("title");
+            const newProjectTitle = formData.get("title"); 
 
-            project.dataset.sidebarFilter = newProjectTitle;
-            project.dataset.projectName = newProjectTitle;
             project.querySelector("p").textContent = newProjectTitle;
+            project.dataset.projectName = newProjectTitle;
+            project.dataset.sidebarFilter = newProjectTitle;
+            const elementsWithProjectName = project.querySelectorAll("[data-project-name]");
+            elementsWithProjectName.forEach(element => element.dataset.projectName = newProjectTitle);
             
             _closeModal(editProjectModal, editProjectForm);
+            // _openProject(e)
 
             editProjectModal.querySelector("input").value = newProjectTitle;
-
-
         })
     }
     const _deleteProject = (e) => {
