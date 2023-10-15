@@ -11,17 +11,14 @@ const displayController = (() => {
     const newProjectForm = document.getElementById("newProjectForm");
     const editProjectModal = document.getElementById("editProjectModal");
     const editProjectForm = document.getElementById("editProjectForm");
+    const modalBackdrop = document.getElementById("modalBackdrop");
 
     const projectsCount = document.querySelector(".projects-count");
-    let projectConfirmBtn = document.getElementById("projectConfirm");
     
     const mainContent = document.getElementById("main-content");
 
     const modalBtns = document.querySelectorAll(".modal-button");
     const newTaskModal = document.getElementById("newTaskModal");
-
-    const backdropModal = document.createElement("div");
-    backdropModal.className = "backdrop";
 
 
     const _highlightActiveBtn = (e) => {
@@ -57,19 +54,34 @@ const displayController = (() => {
     }
     const _openModal = (modal) => {
         modal.style.display = "block";
-        backdropModal.style.display = "block";
-        document.body.appendChild(backdropModal);
+        modalBackdrop.style.display = "block";
     }
     const _closeModal = (modal, form) => {
         modal.style.display = "none";
-        backdropModal.style.display = "none";
-        document.body.removeChild(backdropModal);
+        modalBackdrop.style.display = "none";
         form.reset();
     }
-    const _editProjectModal = (e, projectTitle) => {
+    const _editProjectModal = (e, oldProjectTitle, project) => {
         e.stopPropagation();  // Prevents clicking the delete buttons from trying to propagate and open the project content
-        dom.editProjectModal();  // Convert the project modal HTML element to Edit Project mode
-        _openModal(projectModal);
+        _openModal(editProjectModal);
+
+        editProjectModal.querySelector("input").value = oldProjectTitle;        
+
+        editProjectForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const formData = new FormData(editProjectForm);
+            const newProjectTitle = formData.get("title");
+
+            project.dataset.sidebarFilter = newProjectTitle;
+            project.dataset.projectName = newProjectTitle;
+            project.querySelector("p").textContent = newProjectTitle;
+            
+            _closeModal(editProjectModal, editProjectForm);
+
+            editProjectModal.querySelector("input").value = newProjectTitle;
+
+
+        })
     }
     const _deleteProject = (e) => {
         e.stopPropagation();  // Prevents clicking the delete buttons from trying to propagate and open the project content
@@ -77,11 +89,6 @@ const displayController = (() => {
         Projects.deleteProject();
         _clearProject();
         _updateNumProjects();
-    }
-    const _editProject = (e, projectForm) => {
-        e.preventDefault();
-        const formData = new FormData(projectForm);
-        const projectTitle = formData.get("title");
     }
     const _createProject = (e, projectForm) => {
         e.preventDefault();
@@ -102,7 +109,7 @@ const displayController = (() => {
             projectsSidebar.appendChild(project);
 
             const editProjectBtn = document.querySelector(`[data-project-name = "${projectTitle}"].edit-project`);
-            editProjectBtn.addEventListener("click", (e) => _editProjectModal(e, projectTitle));
+            editProjectBtn.addEventListener("click", (e) => _editProjectModal(e, projectTitle, project));
 
             const deleteProjectBtn = document.querySelector(`[data-project-name = "${projectTitle}"].delete-project`);
             deleteProjectBtn.addEventListener("click", _deleteProject);
