@@ -11,6 +11,7 @@ const displayController = (() => {
     const newProjectBtn = document.querySelector(".create-project-button");
     const projectsCount = document.querySelector(".projects-count");
     let projectConfirmBtn = document.getElementById("projectConfirm");
+    let projectTitleInput = document.getElementById("projectInput");
     
     const mainContent = document.getElementById("main-content");
 
@@ -43,9 +44,9 @@ const displayController = (() => {
         }
 
         const project = e.target.closest(".button");
-        const projectName = project.dataset.sidebarFilter;
+        const projectTitle = project.dataset.sidebarFilter;
 
-        const { headerContainer, tasksContainer } = dom.createMain(projectName);
+        const { headerContainer, tasksContainer } = dom.createMain(projectTitle);
 
         mainContent.appendChild(headerContainer);
         mainContent.appendChild(tasksContainer);
@@ -67,6 +68,15 @@ const displayController = (() => {
         e.stopPropagation();  // Prevents clicking the delete buttons from trying to propagate and open the project content
         dom.editProjectModal(projectTitle);  // Convert the project modal HTML element to Edit Project mode
         _openModal(projectModal);
+
+        const project = document.querySelector(`[data-project-title = "${projectTitle}"]`);
+        projectForm.addEventListener("submit", (e) => {
+            if (projectConfirmBtn.textContent === "Edit") {
+                _editProject(e, projectForm, project);
+            }
+
+            console.log(e.target.parentNode)
+        })
     }
     const _deleteProject = (e) => {
         e.stopPropagation();  // Prevents clicking the delete buttons from trying to propagate and open the project content
@@ -75,10 +85,16 @@ const displayController = (() => {
         _clearProject();
         _updateNumProjects();
     }
-    const _editProject = (e, projectForm) => {
+    const _editProject = (e, projectForm, project) => {
         e.preventDefault();
+
         const formData = new FormData(projectForm);
-        const projectTitle = formData.get("title");
+        const newProjectTitle = formData.get("title");
+
+        project.dataset.sidebarFilter = newProjectTitle;
+        project.dataset.projectTitle = newProjectTitle;
+        const title = project.querySelector("p");
+        title.textContent = newProjectTitle;
     }
     const _createProject = (e, projectForm) => {
         e.preventDefault();
@@ -98,11 +114,11 @@ const displayController = (() => {
             Projects.addProject(Project(projectTitle));
             projectsSidebar.appendChild(project);
 
-            const editProjectBtn = document.querySelector(`[data-project-name = "${projectTitle}"].edit-project`);
+            const editProjectBtn = document.querySelector(`[data-project-title = "${projectTitle}"].edit-project`);
             editProjectBtn.addEventListener("click", (e) => _editProjectModal(e, projectTitle));
 
 
-            const deleteProjectBtn = document.querySelector(`[data-project-name = "${projectTitle}"].delete-project`);
+            const deleteProjectBtn = document.querySelector(`[data-project-title = "${projectTitle}"].delete-project`);
             deleteProjectBtn.addEventListener("click", _deleteProject);
         
         } else {
@@ -141,7 +157,6 @@ const displayController = (() => {
 
         _closeModal(e.target.parentNode, projectForm);
         _updateNumProjects();
-        
     } )
 
     _initDisplay();

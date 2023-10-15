@@ -26,31 +26,31 @@ const dom = (() => {
     }
 
     // Create a project element in the DOM
-    const createSidebarProject = (projectName) => {
+    const createSidebarProject = (projectTitle) => {
         const projectContainer = document.createElement("div");
         projectContainer.classList.add("button");
         projectContainer.classList.add("project-button");
         projectContainer.classList.add("button-hover");
-        projectContainer.dataset.sidebarFilter = projectName;
-        projectContainer.dataset.projectName = projectName;
+        projectContainer.dataset.sidebarFilter = projectTitle;
+        projectContainer.dataset.projectTitle = projectTitle;
 
         const projectIcon = new Image();
         projectIcon.src = ProjectIcon;
-        projectIcon.dataset.sidebarIcon = projectName;
+        projectIcon.dataset.sidebarIcon = projectTitle;
 
         const name = document.createElement("p");
-        name.textContent = projectName;
+        name.textContent = projectTitle;
     
         const projectModification = document.createElement("div");
         projectModification.classList.add("projectModification");
         const editIcon = new Image();
         editIcon.src = EditIcon;
         editIcon.classList.add("edit-project");
-        editIcon.dataset.projectName = projectName
+        editIcon.dataset.projectTitle = projectTitle
         const deleteIcon = new Image();
         deleteIcon.src = DeleteIcon;
         deleteIcon.classList.add("delete-project");
-        deleteIcon.dataset.projectName = projectName
+        deleteIcon.dataset.projectTitle = projectTitle
     
         projectModification.appendChild(editIcon);
         projectModification.appendChild(deleteIcon);
@@ -63,12 +63,12 @@ const dom = (() => {
     }
 
     // Create main
-    const createMain = (projectName) => {
+    const createMain = (projectTitle) => {
         const headerContainer = document.createElement("div");
         headerContainer.classList.add("tasks-header-container");
-        const headerIcon = document.querySelector(`img[data-sidebar-icon="${projectName}"]`).cloneNode(true);
+        const headerIcon = document.querySelector(`img[data-sidebar-icon="${projectTitle}"]`).cloneNode(true);
         const headerText = document.createElement("h1");
-        headerText.textContent = projectName;
+        headerText.textContent = projectTitle;
         headerContainer.appendChild(headerIcon);
         headerContainer.appendChild(headerText);
 
